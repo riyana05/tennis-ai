@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RatingBar from "./RatingBar.jsx";
 
-const BASE_URL = 'https://tennis-backend-y0jn.onrender.com';
+const BASE_URL = '/api';
 
 
 const DEFAULT_STATS = {
