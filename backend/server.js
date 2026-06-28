@@ -10,6 +10,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const express = require('express');
+const cors = require('cors'); // 1. Import cors
+
+const app = express();
+
+app.use(cors()); // 2. Enable CORS for all incoming requests
+app.use(express.json());
+
+// Optional: Add this if you want to fix the "Cannot GET /" message:
+app.get('/', (req, res) => {
+  res.send('MatchPoint AI Backend is running smoothly!');
+});
+
 // ---------- PHASE 1: Match Predictor ----------
 // Players are now free text — any ATP or WTA player name, not a fixed
 // roster. The Groq LLM itself verifies the player has real tour-level
