@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import RatingBar from "./RatingBar.jsx";
 
-const BASE_URL = import.meta.env.VITE_API_URL || '';
-console.log("DEBUG: Current Backend URL is ->", BASE_URL || "EMPTY / BLANK");
+const BASE_URL = 'https://tennis-backend-y0jn.onrender.com';
+
 
 const DEFAULT_STATS = {
   firstServeIn: 58,
