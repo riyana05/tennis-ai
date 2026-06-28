@@ -7,22 +7,17 @@ import { computeAnalytics } from "./analytics/engine.js";
 import { predictMatch, generateCoachFeedback } from "./llm/service.js";
 
 const app = express();
+
+// Enable CORS and parsing middleware cleanly at the top
 app.use(cors());
 app.use(express.json());
 
-const express = require('express');
-const cors = require('cors'); // 1. Import cors
-
-// Optional: Add this if you want to fix the "Cannot GET /" message:
+// Home endpoint to replace the "Cannot GET /" screen
 app.get('/', (req, res) => {
   res.send('MatchPoint AI Backend is running smoothly!');
 });
 
 // ---------- PHASE 1: Match Predictor ----------
-// Players are now free text — any ATP or WTA player name, not a fixed
-// roster. The Groq LLM itself verifies the player has real tour-level
-// history and produces the prediction from its own knowledge.
-
 app.post("/api/predict", async (req, res) => {
   try {
     const { playerA, playerB, surface } = req.body;
@@ -62,12 +57,10 @@ app.post("/api/predict", async (req, res) => {
 });
 
 // ---------- PHASE 2: AI Coach ----------
-
 app.post("/api/coach", async (req, res) => {
   try {
     const stats = req.body;
 
-    // Basic validation
     const required = [
       "firstServeIn", "firstServeWon", "secondServeWon", "doubleFaults",
       "totalServicePoints", "returnPointsWon",
@@ -84,10 +77,7 @@ app.post("/api/coach", async (req, res) => {
       return res.status(400).json({ error: "winners and unforcedErrors objects are required" });
     }
 
-    // Step 1: backend computes ALL stats (analytics engine)
     const analytics = computeAnalytics(stats);
-
-    // Step 2: LLM interprets pre-computed analytics into coaching feedback
     const feedback = await generateCoachFeedback(analytics);
 
     res.json({ analytics, feedback });
