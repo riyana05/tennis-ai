@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://tennis-backend-y0jn.onrender.com/api/:path*"
+    }
+  ]
+}
