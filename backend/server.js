@@ -13,11 +13,6 @@ app.use(express.json());
 const express = require('express');
 const cors = require('cors'); // 1. Import cors
 
-const app = express();
-
-app.use(cors()); // 2. Enable CORS for all incoming requests
-app.use(express.json());
-
 // Optional: Add this if you want to fix the "Cannot GET /" message:
 app.get('/', (req, res) => {
   res.send('MatchPoint AI Backend is running smoothly!');
