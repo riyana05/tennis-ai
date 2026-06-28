@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProbabilityBar from "./ProbabilityBar.jsx";
 
-const BASE_URL = 'https://tennis-backend-y0jn.onrender.com';
+const BASE_URL = '/api';
 
 const SURFACES = [
   { id: "Clay", label: "Clay", swatch: "bg-clay-500" },
